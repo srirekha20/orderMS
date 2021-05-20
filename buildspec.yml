@@ -2,10 +2,10 @@ version: 0.2
 
 env:
   secrets-manager:
-    LOGIN: secret:sonartoken
-    HOST: secret:host
-    Organization: secret:organization
-    Project: secret:projectKey
+    LOGIN: SecretCredentials:sonartoken
+    HOST: SecretCredentials:host
+    Organization: SecretCredentials:organization
+    Project: SecretCredentials:projectKey
 
 
 phases:
