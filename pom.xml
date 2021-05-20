@@ -36,6 +36,9 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<sonar.projectKey>srirekha20</sonar.projectKey>
+         <sonar.organization>srirekha20</sonar.organization>
+          <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
