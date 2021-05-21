@@ -15,10 +15,10 @@ phases:
   pre_build:
     commands:
       - echo Logging into Amazon ECR
-      - pip install --upgrade awscli==1.18.17
+      - pip install --upgrade awscli==1.19.54
       - aws --version
-      
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/p5v9d3n9
+      - aws ecr get-login --no-include-email --region us-east-1
+      #- aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/p5v9d3n9
       - REPOSITORY_URI=public.ecr.aws/p5v9d3n9/project
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
