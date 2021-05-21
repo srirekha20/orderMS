@@ -36,16 +36,15 @@ phases:
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
       - echo generating jar
       - echo building the docker image
-      - docker build -t public.ecr.aws/p5v9d3n9/project:latest
-      - docker tag public.ecr.aws/p5v9d3n9/project:latest
-      #public.ecr.aws/p5v9d3n9/project:$IMAGE_TAG
+      - docker build -t REPOSITORY_URI:latest
+      - docker tag REPOSITORY_URI:latest REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the docker images
-      - docker push public.ecr.aws/p5v9d3n9/project:latest
+      - docker push REPOSITORY_URI:latest
       #- docker push public.ecr.aws/p5v9d3n9/project:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"userContainer","imageUri":"%s"}]' public.ecr.aws/p5v9d3n9/project:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"userContainer","imageUri":"%s"}]' pREPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
